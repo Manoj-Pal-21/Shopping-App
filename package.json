@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "server": "nodemon app.js",
-    "start": "node app.js",
+    "server": "nodemon BACKAND/app.js",
+    "start": "node BACKAND/app.js",
     "build": "npm install && npm install --prefix FRONTEND && npm run build --prefix FRONTEND"
   },
   "keywords": [],

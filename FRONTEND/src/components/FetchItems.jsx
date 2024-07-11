@@ -14,7 +14,7 @@ const FetchItems = () => {
         const signal = controller.signal;
 
         dispatch(fetchActions.markFetchingStarted());
-        fetch('http://localhost:8000/items', { signal })
+        fetch('http://localhost:8080/items', { signal })
             .then((res) => res.json())
             .then(({ items }) => {
                 dispatch(fetchActions.markFetchDone());

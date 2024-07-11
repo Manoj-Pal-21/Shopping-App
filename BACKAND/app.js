@@ -4,7 +4,7 @@ const path = require('path');
 const { getStoredItems, storeItems } = require('./data/items');
 
 const app = express();
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(bodyParser.json());
@@ -29,7 +29,8 @@ app.get('*', (req, res) => {
 app.get('/items', async (req, res) => {
   const storedItems = await getStoredItems();
   await new Promise((resolve, reject) => setTimeout(() => resolve(), 1000));
-  res.json({ items: storedItems });
+  console.log(storedItems)
+  return res.json({ items: storedItems });
 });
 
 app.get('/items/:id', async (req, res) => {
