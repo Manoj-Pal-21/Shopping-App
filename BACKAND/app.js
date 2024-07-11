@@ -4,9 +4,7 @@ const path = require('path');
 const { getStoredItems, storeItems } = require('./data/items');
 
 const app = express();
-const PORT = process.env.PORT || 8080;
-
-const __dirname = path.resolve();
+const PORT = process.env.PORT || 8000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -24,7 +22,7 @@ app.use(express.static(path.join(__dirname, "../FRONTEND/dist")));
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "FRONTEND", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../FRONTEND/dist", "index.html"));
 });
 
 // API endpoints
