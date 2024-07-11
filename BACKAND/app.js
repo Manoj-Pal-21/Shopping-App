@@ -21,6 +21,11 @@ app.use((req, res, next) => {
 const frontendPath = path.join(__dirname, '../FRONTEND/dist');
 app.use(express.static(frontendPath));
 
+// Serve index.html for all other routes (SPA support)
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'FRONTEND', 'dist', 'index.html'));
+});
+
 // API endpoints
 app.get('/items', async (req, res) => {
   const storedItems = await getStoredItems();
@@ -44,11 +49,6 @@ app.post('/items', async (req, res) => {
   const updatedItems = [newItem, ...existingItems];
   await storeItems(updatedItems);
   res.status(201).json({ message: 'Stored new item.', item: newItem });
-});
-
-// Serve index.html for all other routes (SPA support)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // Start server
