@@ -18,12 +18,12 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the frontend build directory
-const frontendPath = path.join(__dirname, '../FRONTEND/dist');
+const frontendPath = path.join(__dirname, "../FRONTEND/dist");
 app.use(express.static(frontendPath));
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'FRONTEND', 'dist', 'index.html'));
+  res.sendFile(path.join(__dirname, "FRONTEND", "dist", "index.html"));
 });
 
 // API endpoints
