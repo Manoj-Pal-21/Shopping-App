@@ -6,6 +6,8 @@ const { getStoredItems, storeItems } = require('./data/items');
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+const __dirname = path.resolve();
+
 // Middleware
 app.use(bodyParser.json());
 
@@ -18,8 +20,7 @@ app.use((req, res, next) => {
 });
 
 // Serve static files from the frontend build directory
-const frontendPath = path.join(__dirname, "../FRONTEND/dist");
-app.use(express.static(frontendPath));
+app.use(express.static(path.join(__dirname, "../FRONTEND/dist")));
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
