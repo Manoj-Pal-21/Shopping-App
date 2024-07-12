@@ -14,7 +14,7 @@ const FetchItems = () => {
         const signal = controller.signal;
 
         dispatch(fetchActions.markFetchingStarted());
-        fetch('http://localhost:8080/items', { signal })
+        fetch('http://shopping-app-ptkv/items', { signal })
             .then((res) => res.json())
             .then(({ items }) => {
                 dispatch(fetchActions.markFetchDone());
