@@ -21,8 +21,7 @@ app.use((req, res, next) => {
 app.get('/items', async (req, res) => {
   const storedItems = await getStoredItems();
   await new Promise((resolve, reject) => setTimeout(() => resolve(), 1000));
-  console.log(storedItems)
-  return res.json({ items: storedItems });
+  res.json({ items: storedItems });
 });
 
 app.get('/items/:id', async (req, res) => {
@@ -44,14 +43,16 @@ app.post('/items', async (req, res) => {
 });
 
 // Serve static files from the frontend build directory
-app.use(express.static(path.join(__dirname, "../FRONTEND/dist")));
+const frontendPath = path.join(__dirname, './FRONTEND/dist');
+app.use(express.static(frontendPath));
 
 // Serve index.html for all other routes (SPA support)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, "../FRONTEND/dist", "index.html"));
+  console.log(frontendPath)
+  res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
