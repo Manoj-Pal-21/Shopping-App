@@ -14,7 +14,7 @@ const FetchItems = () => {
         const signal = controller.signal;
 
         dispatch(fetchActions.markFetchingStarted());
-        fetch('/items', { signal })
+        fetch('http://shopping-app-ptkv.onrender.com/items', { signal })
             .then((res) => res.json())
             .then(({ items }) => {
                 dispatch(fetchActions.markFetchDone());
